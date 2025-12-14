@@ -26,18 +26,7 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		main = "ibl",
 		config = function()
-			local ibl = require("ibl")
-
-			ibl.setup({
-				enabled = true,
-				debounce = 300,
-				indent = {
-					char = "│", --center
-					smart_indent_cap = true,
-				},
-				scope = { enabled = false, },
-			})
-			vim.keymap.set('n', '<leader>ui', '<cmd>IBLToggle<cr>')
+			require("ibl").setup()
 		end
 	},
 
@@ -47,38 +36,7 @@ return {
 		version = false,
 		event = "VeryLazy",
 		config = function()
-			require('mini.indentscope').setup({
-				symbol = "│", --center
-				options = {
-					try_as_border = true
-				},
-				draw = {
-					-- Delay (in ms) between event and start of drawing scope indicator
-					delay = 100,
-					-- Symbol priority. Increase to display on top of more symbols.
-					priority = 2,
-				},
-			})
-
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = {
-					"lsp",
-					"help",
-					"alpha",
-					"dashboard",
-					"neo-tree",
-					"Trouble",
-					"lazy",
-					"mason",
-					"notify",
-					"toggleterm",
-					"lazyterm",
-					"NvimTree",
-				},
-				callback = function()
-					vim.b.miniindentscope_disable = true
-				end,
-			})
+			require('mini.indentscope').setup()
 		end
 	},
 
@@ -95,6 +53,10 @@ return {
 	{
 		"rcarriga/nvim-notify",
 		event = "VeryLazy",
+		keys = { -- Keymap langsung di plugin spec
+			{ "<leader>hc", function() require("notify").clear_history() end, desc = "Clear notifications" },
+			{ "<leader>hn", function() require("notify").history() end,       desc = "Show notification history" },
+		},
 		config = function()
 			-- di plugins/init.lua
 			require("notify").setup({
@@ -107,7 +69,7 @@ return {
 				-- max_width = 80,
 				-- max_height = 20,
 				-- Enable history
-				history = true,           -- Simpan history
+				history = true, -- Simpan history
 				render = "default",
 				stages = "fade_in_slide_out",
 
@@ -117,12 +79,6 @@ return {
 			})
 
 			vim.notify = require("notify")
-
 		end,
-		keys = {  -- Keymap langsung di plugin spec
-			{ "<leader>hc", function() require("notify").dismiss() end, desc = "Clear notifications" },
-			{ "<leader>hn", function() require("notify").history() end, desc = "Show notification history" },
-		},
 	},
 }
-

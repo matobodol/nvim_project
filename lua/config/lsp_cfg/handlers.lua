@@ -1,3 +1,6 @@
+local icon = require("var.icons")
+
+
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
@@ -19,10 +22,10 @@ local function set_diagnostics()
 		signs = {
 			active = true,
 			text = {
-				[severity.ERROR] = "", -- Contoh: Ikon Font Awesome untuk Error
-				[severity.WARN]  = "", -- Contoh: Ikon Font Awesome untuk Warning
-				[severity.INFO]  = "", -- Contoh: Ikon Font Awesome untuk Info
-				[severity.HINT]  = "", -- Contoh: Ikon Font Awesome untuk Hint (atau )
+				[severity.ERROR] = icon.diagnostics.Error, -- Contoh: Ikon Font Awesome untuk Error
+				[severity.WARN]  = icon.diagnostics.Warn, -- Contoh: Ikon Font Awesome untuk Warning
+				[severity.INFO]  = icon.diagnostics.Info, -- Contoh: Ikon Font Awesome untuk Info
+				[severity.HINT]  = icon.diagnostics.Hint, -- Contoh: Ikon Font Awesome untuk Hint (atau )
 			},
 		},
 		virtual_text = diagnostics_enabled,

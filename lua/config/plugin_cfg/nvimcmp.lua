@@ -2,6 +2,7 @@
 
 
 local status_ok, cmp = pcall(require, "cmp")
+local icons          = require("var.icons")
 if not status_ok then
 	return
 end
@@ -37,13 +38,7 @@ cmp.setup({
 	formatting = {
 		fields = { "menu", "abbr", "kind" },
 		format = function(entry, vim_item)
-			local menu_icon = {
-				nvim_lsp = 'λ',
-				luasnip = '>',
-				buffer = 'Ω',
-				path = '::',
-				cmdline = "",
-			}
+			local menu_icon = icons.menu_icon
 
 			-- size menu char
 			local ELLIPSIS_CHAR = '~'

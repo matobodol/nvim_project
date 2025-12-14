@@ -1,4 +1,3 @@
-
 -- Telescope
 return {
 	{
@@ -9,6 +8,7 @@ return {
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>" },
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>" },
 			{ "<leader>fo", "<cmd>Telescope oldfiles<cr>" },
+			{ "<leader>fn", "<cmd>Telescope notify<cr>" },
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -21,7 +21,7 @@ return {
 
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",                      -- Compile saat install
+		build = "make",                    -- Compile saat install
 		cond = vim.fn.executable("make") == 1, -- Conditional install
 	},
 }
