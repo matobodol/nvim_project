@@ -19,7 +19,7 @@ local icons = {
 	},
 	-- cmp
 	menu_icon = {
-		nvim_lsp = '', -- Atau ''
+		nvim_lsp = '', -- Atau ''
 		luasnip = '', -- Atau ''
 		buffer = '', -- Atau ''
 		path = '', -- Atau ''
@@ -79,6 +79,35 @@ local icons = {
 		Unit = " ",
 		Value = " ",
 		Variable = " ",
+	},
+
+	kinds2 = {
+		File = "",
+		Module = "",
+		Namespace = "",
+		Package = "",
+		Class = "",
+		Method = "",
+		Property = "",
+		Field = "",
+		Constructor = "",
+		Enum = "",
+		Interface = "",
+		Function = "",
+		Variable = "",
+		Constant = "",
+		String = "",
+		Number = "",
+		Boolean = "",
+		Array = "",
+		Object = "",
+		Key = "",
+		Null = "",
+		EnumMember = "",
+		Struct = "",
+		Event = "",
+		Operator = "",
+		TypeParameter = "",
 	},
 }
 

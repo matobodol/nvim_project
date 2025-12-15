@@ -92,4 +92,15 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		config = true,
 	},
+	{
+		"utilyre/barbecue.nvim",
+		event = "InsertEnter",
+		name = "barbecue",
+		version = "*",
+
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons", -- optional dependency
+		},
+	},
 }

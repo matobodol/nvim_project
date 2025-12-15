@@ -1,4 +1,5 @@
 return {
+
 	-- ========== LSP MANAGER ==========
 	{
 		"williamboman/mason.nvim",

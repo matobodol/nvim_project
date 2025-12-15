@@ -52,7 +52,8 @@ return {
 	-- ========== NOTIFICATIONS ==========
 	{
 		"rcarriga/nvim-notify",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		lazy = false,
 		keys = { -- Keymap langsung di plugin spec
 			{ "<leader>hc", function() require("notify").clear_history() end, desc = "Clear notifications" },
 			{ "<leader>hn", function() require("notify").history() end,       desc = "Show notification history" },

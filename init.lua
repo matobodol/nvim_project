@@ -17,14 +17,15 @@ require("core.options")
 require("core.keymaps")
 
 -- Load plugins
-require("plugins.init")
+require("plugins")
 
 -- Function to recursively require all .lua files in a directory
-local function load_moduls_directory(dir_path)
+local function require_directory(dir_path)
 	local config_dir = vim.fn.stdpath("config") .. "/lua/" .. dir_path
 	local success, dir_content = pcall(vim.fn.readdir, config_dir)
 
 	if not success then
+		vim.notify(dir_path .. ": not found")
 		return
 	end
 
@@ -34,7 +35,7 @@ local function load_moduls_directory(dir_path)
 
 		if is_directory then
 			-- Recursively load subdirectories
-			load_moduls_directory(dir_path .. "/" .. item)
+			require_directory(dir_path .. "/" .. item)
 		elseif item:match("%.lua$") then
 			-- Require .lua files
 			local module_name = item:gsub("%.lua$", "")
@@ -46,7 +47,7 @@ end
 
 -- Function to load all configs from a specific directory
 local function load_lazy_configs(config_type)
-	local config_dir = "config/" .. config_type
+	local config_dir = config_type
 	local success, dir_content = pcall(vim.fn.readdir, vim.fn.stdpath("config") .. "/lua/" .. config_dir)
 
 	if not success then
@@ -62,15 +63,15 @@ local function load_lazy_configs(config_type)
 	end
 end
 
-
--- Loadm all moduls
-load_moduls_directory("moduls")
-load_moduls_directory("autocmd")
-
-
--- load config.....
 -- Load all plugin lazy configurations
-load_lazy_configs("plugin_cfg")
-load_lazy_configs("lsp_cfg")
+-- load_lazy_configs("plugins")
+load_lazy_configs("config/plugin_cfg")
+load_lazy_configs("config/lsp_cfg")
 
-load_moduls_directory("config/modul_cfg")
+
+-- Load all moduls
+require_directory("moduls")
+require_directory("autocmd")
+
+
+require_directory("config/modul_cfg")

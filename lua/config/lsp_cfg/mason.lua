@@ -15,6 +15,7 @@ local servers = {
 	"rust_analyzer",
 }
 
+
 local servers_mason = require("mason-lspconfig").get_installed_servers()
 for _, lsp_installed in ipairs(servers_mason) do
 	table.insert(servers, lsp_installed)
@@ -25,9 +26,16 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 for _, lsp in ipairs(servers) do
 	local opts = {
 		capabilities = capabilities,
-		on_attach = function(_, bufnr)
-			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+		on_attach = function(client, bufnr)
+			local status_navic_ok, nvim_navic = pcall(require, "nvim-navic")
+			if status_navic_ok then
+				if client.server_capabilities["documentSymbolProvider"] then
+					nvim_navic.attach(client, bufnr)
+				end
+			end
 
+
+			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			vim.keymap.set("n", "<leader>th", function()
 				local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
 				vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
@@ -41,6 +49,7 @@ for _, lsp in ipairs(servers) do
 		opts.settings = lang_opts
 	end
 
+	-- integrasi nvim-navic
 	vim.lsp.config(lsp, opts)
 	vim.lsp.enable(lsp)
 end

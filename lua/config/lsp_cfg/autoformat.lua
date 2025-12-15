@@ -22,13 +22,6 @@ M.on_attach = function(client, bufnr)
 			end,
 		})
 	end
-
-	local status_navic_ok, nvim_navic = pcall(require, "nvim-navic")
-	if status_navic_ok then
-		if client.server_capabilities["documentSymbolProvider"] then
-			nvim_navic.attach(client, bufnr)
-		end
-	end
 end
 
 function M.enable_format_on_save()
