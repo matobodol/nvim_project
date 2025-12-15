@@ -56,4 +56,4 @@ end
 -- vim.cmd [[ command! LspToggleAutoFormat execute 'lua ]]
 
 M.enable_format_on_save()
-vim.keymap.set('n', '<leader>tf', M.toggle_format_on_save, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tf', M.toggle_format_on_save, { desc = "Toggle Autoformat", noremap = true, silent = true })

@@ -37,9 +37,10 @@ for _, lsp in ipairs(servers) do
 
 			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			vim.keymap.set("n", "<leader>th", function()
-				local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
-				vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
-			end, { buffer = bufnr })
+					local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+					vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+				end, { desc = "LSP: Toggle Inlay Hint" },
+				{ buffer = bufnr })
 		end,
 	}
 

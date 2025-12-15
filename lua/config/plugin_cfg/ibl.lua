@@ -1,12 +1,4 @@
 require("ibl").setup({
-	-- indent = {
-	-- 	char = "│",
-	-- 	tab_char = "│",
-	-- },
-	-- scope = {
-	-- 	show_start = false,
-	-- 	show_end = false,
-	-- },
 	enabled = true,
 	debounce = 300,
 	indent = {
@@ -17,7 +9,6 @@ require("ibl").setup({
 })
 vim.keymap.set('n', '<leader>ui', '<cmd>IBLToggle<cr>')
 
-
 require('mini.indentscope').setup({
 	symbol = "│", --center
 	options = {
@@ -25,7 +16,7 @@ require('mini.indentscope').setup({
 	},
 	draw = {
 		-- Delay (in ms) between event and start of drawing scope indicator
-		delay = 100,
+		delay = 300,
 		-- Symbol priority. Increase to display on top of more symbols.
 		priority = 2,
 	},

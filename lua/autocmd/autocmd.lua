@@ -40,4 +40,4 @@ local function toggle_number()
 end
 
 -- Keymap untuk toggle
-vim.keymap.set('n', '<leader>.', toggle_number, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>.', toggle_number, { desc = "toggle line number", noremap = true, silent = true })
