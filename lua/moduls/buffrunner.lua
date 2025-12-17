@@ -11,10 +11,11 @@ local function get_buffer_info()
 	}
 end
 
-local function build_run_command(ext, info)
+local function config(ext, info)
 	local cfg = {
 		html = {
 			run = string.format("%s/server %s", current_dir, info.full_path),
+			addr = "127.0.0.1:3000"
 		},
 
 		py = {
@@ -25,9 +26,9 @@ local function build_run_command(ext, info)
 			run = "/data/data/com.termux/files/usr/bin/bash " .. info.full_path,
 		},
 
-		-- lua = {
-		-- 	run = "lua " .. info.full_path,
-		-- },
+		lua = {
+			run = "lua " .. info.full_path,
+		},
 
 		fish = {
 			run = "fish " .. info.full_path,
@@ -59,9 +60,9 @@ local function build_run_command(ext, info)
 	return cfg[ext]
 end
 
-local function buffrunner()
+local function setul()
 	local info = get_buffer_info()
-	local conf = build_run_command(info.file_eks, info)
+	local conf = config(info.file_eks, info)
 
 	if not conf then
 		vim.notify(
@@ -76,6 +77,7 @@ local function buffrunner()
 		conf.compile,
 		conf.run,
 		conf.delTemp,
+		conf.addr,
 	}), " ")
 
 	if cmd ~= "" then
@@ -86,12 +88,19 @@ local function buffrunner()
 	-- HTML auto-open
 	if info.file_eks == "html" then
 		vim.defer_fn(function()
-			local url = string.format("http://127.0.0.1:8080/%s.html", info.base_name)
+			local url = string.format("http://%s/%s.html", conf.addr, info.base_name)
 			vim.fn.system("xdg-open " .. url)
 		end, 100)
 	end
 end
 
+
+-- Setup keymap
+vim.keymap.set("n", "<leader>rr", function()
+	require("moduls.coder").run()
+end, { noremap = true, silent = true })
+
+
 return {
-	buffrunner = buffrunner,
+	buffrunner = setul,
 }

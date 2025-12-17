@@ -1,6 +1,6 @@
 local ensure_installed = {
-	"pyright",
 	"bashls",
+	"pyright",
 }
 
 require("mason").setup()

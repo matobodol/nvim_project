@@ -78,4 +78,4 @@ vim.keymap.set("n", "<Leader>cx", ':term cd %:h && RUSTFLAGS="-Awarnings" cargo 
 vim.keymap.set("n", "<leader>x", function()
 	require("moduls.buffrunner").buffrunner()
 end, { desc = "Run current buffer" })
-
+-- Di init.lua atau file config

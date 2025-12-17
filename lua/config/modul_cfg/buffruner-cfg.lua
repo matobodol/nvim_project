@@ -1,0 +1,16 @@
+-- -- Di init.lua atau file config
+-- local buffrunner = require("buffrunner")
+--
+-- -- Setup sederhana
+-- buffrunner.setup({
+-- 	split_cmd = "split", -- atau "vsplit"
+-- 	split_size = 15,
+-- })
+--
+-- -- Setup keymap
+-- vim.keymap.set("n", "<leader>rr", function()
+-- 	require("buffrunner").run()
+-- end, { noremap = true, silent = true })
+--
+-- -- Atau gunakan helper
+-- -- buffrunner.set_keymap("n", "<leader>rr")

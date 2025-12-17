@@ -67,4 +67,8 @@ return {
 			use_diagnostic_signs = true,
 		},
 	},
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	}
 }
